@@ -1,37 +1,37 @@
 version: '3'
 services:
-  postgres_db:
+  postgres_db25:
     image: postgres:14-alpine
-    container_name: "postgres44"
+    container_name: "postgres25"
     environment:
-      - "POSTGRES_PASSWORD=SecretPassword123"
-      - "POSTGRES_DB=hazel_mtzdb"
-      - "POSTGRES_USER=hazel_mtz"
+      - "POSTGRES_PASSWORD=Luisfer2497@"
+      - "POSTGRES_DB=luis_gonzalezdb"
+      - "POSTGRES_USER=luis_gonzalez"
     ports:
-      - "10044:5544"
+      - "10025:5525"
     volumes:
-      - "/home/hazel_mtz/postgres:/usr/src/postgres"
+      - "/home/luis_gonzalez/postgres:/usr/src/postgres"
     networks:
       - our-library-net
-    command: -p 5544
+    command: -p 5525
 
-  web:
+  web25:
     build: .
-    command: bash -c "python manage.py makemigrations && python manage.py migrate && pytest && python manage.py runserver 0.0.0.0:8044"
-    container_name: "django44"
+    command: bash -c "python manage.py makemigrations && python manage.py migrate && pytest && python manage.py runserver 0.0.0.0:8025"
+    container_name: "django25"
     depends_on: 
-      - postgres_db
+      - postgres_db25
     environment:
-      - "PSQL_DBNAME=hazel_mtzdb"
-      - "PSQL_USERNAME=hazel_mtz"
-      - "PSQL_PASS=SecretPassword123"
-      - "PSQL_HOST=172.24.0.21" # You must use the previous command in order to get this HOST
-      - "PSQL_PORT=5544"
+      - "PSQL_DBNAME=luis_gonzalezdb"
+      - "PSQL_USERNAME=luis_gonzalez"
+      - "PSQL_PASS=Luisfer2497@"
+      - "PSQL_HOST=172.24.0.53" # You must use the previous command in order to get this HOST
+      - "PSQL_PORT=5525"
     volumes:
     # "RUTA/DEL/SERVIDOR:RUTA/DENTRO/DEL/CONTENEDOR"
-      - "/home/hazel_mtz/django/library:/usr/src/django/library"
+      - "/home/luis_gonzalez/django/restpy/Django-REST-Exercise:/usr/src/django/library"
     ports:
-      - "9044:8044"
+      - "9025:8025"
     networks:
       - our-library-net
 

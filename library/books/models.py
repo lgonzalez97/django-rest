@@ -22,3 +22,14 @@ class BooksAuthors(models.Model):
 
 	def __str__(self):
 		return f'{self.id}'
+
+class Genre(models.Model):
+	gen_name = models.CharField(max_length = 128)
+
+class Language(models.Model):
+	language = models.CharField(max_length = 128)
+
+class Editorial(models.Model):
+	edi_name = models.CharField(max_length = 128)
+	phone = models.SmallIntegerField()
+		

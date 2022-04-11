@@ -27,3 +27,18 @@ class BooksAuthorsSerializer(serializers.ModelSerializer):
 	class Meta:
 		model = BooksAuthors
 		fields = ['id', 'book', 'author']
+
+class GenreSerializer (serializers.ModelSerializer):
+	class Meta:
+		model = Genre
+		fields = ['id','gen_name']
+
+class LanguageSerializer(serializers.ModelSerializer):
+	class Meta:
+		model = Language
+		fields = ['id', 'language']
+
+class EditorialSerializer(serializers.ModelSerializer):
+	class Meta:
+		model = Editorial
+		fields = ['id', 'editorial']
