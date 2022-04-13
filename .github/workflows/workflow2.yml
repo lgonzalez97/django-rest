@@ -1,0 +1,34 @@
+name: Workflow without docker
+
+on:
+    workflow_call:
+    workflow_dispatch:
+    push:
+       branches: [main]
+    pull_request:
+        branches: [main]
+jobs:
+  simple_build:
+    runs-on: ubuntu-latest
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - name: Checkout code
+        uses: actions/checkout@v3
+      env:
+        PORT: "5432"
+        PSQL_HOST: "localhost"
+        PSQL_PASS: "Luisfer2497@"
+        PSQL_DB: "luis_gonzalezdb"
+        PSQL_USER: "luis_gonzalez"
+        JWT_TOKEN_TIME: "5"
+        PSQL_IMAGE: "posgtres25"
+      services:
+        postgres_main:
+        image: postgres:25
+        env:
+          POSTGRES_USER: ${{ env.PSQL_USER }}
+          POSTGRES_PASSWORD: ${{ env.PSQL_PASS }}
+          POSTGRES_DB: ${{ env.PSQL_DB }}
+        ports:
+          - 5432:5432
+      
