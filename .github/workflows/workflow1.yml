@@ -23,9 +23,9 @@ jobs:
       - name: Run docker container postgres
         run: |
           docker-compose --env-file .env.stg up -d postgres_db25 
-      - name: Verifying net
-        run: |
-          docker inspect -f "{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}" postgres_db25
+      # - name: Verifying net
+      #   run: |
+      #     docker inspect -f "{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}" postgres_db25
       - name: Run docker container web
         run: |
           docker-compose --env-file .env.stg up -d web25
