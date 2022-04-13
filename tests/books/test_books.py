@@ -85,12 +85,12 @@ def test_language(language_n):
 	
 @pytest.mark.django_db
 @pytest.mark.parametrize(
-	'nombre , apellido',
-	(
-		('Paul','Coelho'),
-		('Haruki','Murakami'),
-		('Garcia','Marquez'),
-	)
+    'nombre , apellido',
+    (
+        ('Paul','Coelho'),
+        ('Haruki','Murakami'),
+        ('Garcia','Marquez'),
+    )
 )
 
 @pytest.mark.django_db
@@ -111,12 +111,12 @@ def test_author_with_monkey(monkeypatch,nombre,apellido):
 #     assert Editorial.objects.all().count() == 1
 #     editorial.delete()
 
-# @pytest.mark.django_db
-# def test_author_with_monkey(monkeypatch):
-#         author = Author.objects.create(name='nombre', last_name='apellido')
-#     def model_count_mock():
-#         return 4
-
-#     monkeypatch.setattr(Author.objects.all(), 'count',model_count_mock)
-#     assert Author.objects.all().count() == 4
-#     print('Haciendo el mokeypatch')
+@pytest.mark.django_db
+def test_author_with_monkey2(monkeypatch):
+    author = Author.objects.create(name='nombre', last_name='apellido')
+    def model_count_mock2():
+        return 4
+    print(dir(Author.objects))
+    monkeypatch.setattr(Author.objects, 'count',model_count_mock2)
+    assert Author.objects.count() == 4
+    print('Haciendo el mokeypatch')

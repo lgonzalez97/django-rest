@@ -25,7 +25,8 @@ services:
       - "PSQL_DBNAME=luis_gonzalezdb"
       - "PSQL_USERNAME=luis_gonzalez"
       - "PSQL_PASS=Luisfer2497@"
-      - "PSQL_HOST=172.24.0.53" # You must use the previous command in order to get this HOST
+      - "PSQL_HOST=postgres_db25" # postgres_db25 
+      # You must use the previous command in order to get this HOST
       - "PSQL_PORT=5525"
     volumes:
     # "RUTA/DEL/SERVIDOR:RUTA/DENTRO/DEL/CONTENEDOR"
