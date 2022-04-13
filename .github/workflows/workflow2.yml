@@ -13,7 +13,7 @@ jobs:
     services:
       postgres_main:
         image: postgres:latest
-          env:
+        env:
             PSQL_USER: luis_gonzalez
             PSQL_PASS: luis_pass
             PSQL_DB: luis_gonzalezdb
