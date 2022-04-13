@@ -15,7 +15,7 @@ services:
 
     networks:
       - our-library-net
-    command: " -p 55${PORT}"
+    command: "-p 55${PORT}"
 
   web25:
     build: .
