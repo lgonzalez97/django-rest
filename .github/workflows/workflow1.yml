@@ -14,9 +14,6 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - name: Checkout code
         uses: actions/checkout@v3
-        - name: List files
-        run: |
-          ls -lsa && tree
       - name: Create docker network
         run: |
           docker network create -d bridge our-library-net
