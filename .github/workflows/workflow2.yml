@@ -4,20 +4,12 @@ on:
     workflow_call:
     workflow_dispatch:
     push:
-       branches: [main]
+      branches: [main]
     pull_request:
-        branches: [main]
+      branches: [main]
 jobs:
   build:
     runs-on: ubuntu-latest
-    # env:
-    #   # PSQL_USER: "luis_gonzalez"
-    #   # PSQL_PASS: "Luisfer2497@"
-    #   # PSQL_HOST: "localhost"
-    #   # PSQL_DB: "luis_gonzalezdb"
-    #   # PORT: "5432"
-    #   # DJANGO_SECRET_KEY: test key
-    #   # PSQL_IMAGE: "posgtres25"
     services:
       postgres_main:
         image: postgres:latest
