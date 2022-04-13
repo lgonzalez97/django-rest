@@ -1,32 +1,32 @@
-name: Deploying docker containers of dhango and postgres
+# name: Deploying docker containers of dhango and postgres
 
-on:
-    workflow_call:
-    workflow_dispatch:
-    push:
-       branches: [main]
-    pull_request:
-        branches: [main]
-jobs:
-  simple_build:
-    runs-on: ubuntu-latest
-    steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - name: Checkout code
-        uses: actions/checkout@v3
-      - name: Create docker network
-        run: |
-          docker network create -d bridge our-library-net
-      - name: Build django image
-        run: |
-          docker build -t my-django-image25:2.0.0 .
-      - name: Run docker container postgres
-        run: |
-          docker-compose --env-file .env.stg up -d postgres_db25 
-      # - name: Verifying net
-      #   run: |
-      #     docker inspect -f "{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}" postgres_db25
-      - name: Run docker container web
-        run: |
-          docker-compose --env-file .env.stg up -d web25
+# on:
+#     workflow_call:
+#     workflow_dispatch:
+#     push:
+#        branches: [main]
+#     pull_request:
+#         branches: [main]
+# jobs:
+#   simple_build:
+#     runs-on: ubuntu-latest
+#     steps:
+#       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+#       - name: Checkout code
+#         uses: actions/checkout@v3
+#       - name: Create docker network
+#         run: |
+#           docker network create -d bridge our-library-net
+#       - name: Build django image
+#         run: |
+#           docker build -t my-django-image25:2.0.0 .
+#       - name: Run docker container postgres
+#         run: |
+#           docker-compose --env-file .env.stg up -d postgres_db25 
+#       # - name: Verifying net
+#       #   run: |
+#       #     docker inspect -f "{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}" postgres_db25
+#       - name: Run docker container web
+#         run: |
+#           docker-compose --env-file .env.stg up -d web25
 
