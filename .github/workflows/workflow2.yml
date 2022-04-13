@@ -9,31 +9,30 @@ on:
         branches: [main]
 jobs:
   build:
-
     runs-on: ubuntu-latest
-      env:
-        PSQL_USER: "luis_gonzalez"
-        PSQL_PASS: "Luisfer2497@"
-        PSQL_HOST: "localhost"
-        PSQL_DB: "luis_gonzalezdb"
-        PORT: "5432"
-        DJANGO_SECRET_KEY: test key
-        JWT_TOKEN_TIME: "5"
-        PSQL_IMAGE: "posgtres25"
-      services:
-        postgres_main:
-          image: postgres:25
-           env:
+    env:
+      PSQL_USER: "luis_gonzalez"
+      PSQL_PASS: "Luisfer2497@"
+      PSQL_HOST: "localhost"
+      PSQL_DB: "luis_gonzalezdb"
+      PORT: "5432"
+      DJANGO_SECRET_KEY: test key
+      JWT_TOKEN_TIME: "5"
+      PSQL_IMAGE: "posgtres25"
+    services:
+      postgres_main:
+        image: postgres:25
+          env:
             PSQL_USER: ${{ env.PSQL_USER }}
             PSQL_PASS: ${{ env.PSQL_PASS }}
             PSQL_DB: ${{ env.PSQL_DB }}
-           ports:
-             - 5432:5432
-            options: >-
-              --health-cmd pg_isready 
-              --health-interval 10s 
-              --health-timeout 5s 
-              --health-retries 5
+          ports:
+           - 5432:5432
+          options: >-
+            --health-cmd pg_isready 
+            --health-interval 10s 
+            --health-timeout 5s 
+            --health-retries 5
     strategy:
       matrix:
         python-version: ["3.10.4"] 
