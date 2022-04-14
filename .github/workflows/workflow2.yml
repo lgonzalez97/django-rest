@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: setup django
-    
+      uses: actions/checkout@v2
     #   postgres_main:
     #     image: postgres:latest
     #     env:
