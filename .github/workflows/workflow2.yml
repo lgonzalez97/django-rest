@@ -11,18 +11,22 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
+      PORT: "5525"
       PSQL_USER: luis_gonzalez
       PSQL_PASS: Luisfer2497@
       PSQL_DB: luis_gonzalezdb
+      JWT_TOKEN_TIME: "5"
     services:
       postgres_main:
         image: postgres:14
         env:
+          PORT: "5525"
           PSQL_USER: ${{env.PSQL_USER}}
           PSQL_PASS: ${{env.PSQL_PASS}}
           PSQL_DB: ${{env.PSQL_DB}}
+          JWT_TOKEN: ${{env.JWT_TOKEN_TIME}}
         ports:
-          - 5432:5432   
+          - 10025:5525  
     steps:
     - name: setup django
       uses: actions/checkout@v2
