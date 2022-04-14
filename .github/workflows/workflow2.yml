@@ -8,22 +8,22 @@ on:
     pull_request:
       branches: [main]
 jobs:
-  build:
+  simple-build:
     runs-on: ubuntu-latest
     env:
-      PSQL_USER: luis_gonzalez
+      PSQL_USERNAME: luis_gonzalez
       PSQL_PASS: Luisfer2497@
-      PSQL_DB: luis_gonzalezdb
+      PSQL_DBNAME: luis_gonzalezdb
       JWT_TOKEN_TIME: "10"
       PSQL_HOST: localhost
-      PORT: "5432"
+      PSQL_PORT: "5432"
     services:
       postgres:
         image: postgres:latest
         env:
-          PSQL_USER: ${{env.PSQL_USER}}
-          PSQL_PASS: ${{env.PSQL_PASS}}
-          PSQL_DB: ${{env.PSQL_DB}}
+          POSTGRES_USER: ${{env.PSQL_USERNAME}}
+          POSTGRES_PASSWORD: ${{env.PSQL_PASS}}
+          POSTGRES_DB: ${{env.PSQL_DBNAME}}
         ports:
           - 5432:5432  
     steps:
