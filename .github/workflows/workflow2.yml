@@ -16,7 +16,7 @@ jobs:
       PSQL_DB: luis_gonzalezdb
     services:
       postgres_main:
-        image: postgres: 14
+        image: postgres:14
         env:
           PSQL_USER: ${{env.PSQL_USER}}
           PSQL_PASS: ${{env.PSQL_PASS}}
