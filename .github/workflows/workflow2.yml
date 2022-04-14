@@ -10,6 +10,19 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      PSQL_USER: luis_gonzalez
+      PSQL_PASS: Luisfer2497@
+      PSQL_DB: luis_gonzalezdb
+    services:
+      postgres_main:
+        image: postgres: 14
+        env:
+          PSQL_USER: ${{env.PSQL_USER}}
+          PSQL_PASS: ${{env.PSQL_PASS}}
+          PSQL_DB: ${{env.PSQL_DB}}
+        ports:
+          - 5432:5432   
     steps:
     - name: setup django
       uses: actions/checkout@v2
@@ -26,6 +39,7 @@ jobs:
       run: python manage.py migrate
     - name: Run tests
       run: python manage.py test
+      
     #   postgres_main:
     #     image: postgres:latest
     #     env:
