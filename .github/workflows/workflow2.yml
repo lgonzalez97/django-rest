@@ -11,22 +11,22 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
-      PORT: "5525"
+      PORT: "5432"
       PSQL_USER: luis_gonzalez
       PSQL_PASS: Luisfer2497@
       PSQL_DB: luis_gonzalezdb
-      JWT_TOKEN_TIME: "5"
+      PSQL_HOST: localhost
+      JWT_TOKEN_TIME: "10"
     services:
-      postgres_main:
-        image: postgres:14
+      postgres:
+        image: postgres:latest
         env:
-          PORT: "5525"
           PSQL_USER: ${{env.PSQL_USER}}
           PSQL_PASS: ${{env.PSQL_PASS}}
           PSQL_DB: ${{env.PSQL_DB}}
           JWT_TOKEN: ${{env.JWT_TOKEN_TIME}}
         ports:
-          - 10025:5525  
+          - 5432:5432  
     steps:
     - name: setup django
       uses: actions/checkout@v2
@@ -35,14 +35,17 @@ jobs:
       with:
         python-version: 3.10.4
     - run: |
+        python -m pip install --upgrade pip
         pip install -r requirements.txt
     - uses: harmon758/postgresql-action@v1
       with:
         postgresql version: '14'
+    - name: Make migrations
+      run: python manage.py makemigrations
     - name: Run migrations
       run: python manage.py migrate
     - name: Run tests
-      run: python manage.py test
+      run: pytest
       
     #   postgres_main:
     #     image: postgres:latest
