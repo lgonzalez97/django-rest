@@ -13,6 +13,14 @@ jobs:
     steps:
     - name: setup django
       uses: actions/checkout@v2
+    - name: Setup python 3.10.4
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.10.4
+    - name: Install requirements
+    - run: |
+        pip install -r requirements.txt
+
     #   postgres_main:
     #     image: postgres:latest
     #     env:
@@ -28,15 +36,6 @@ jobs:
     #         --health-retries 5
     #   # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
     # steps:
-    #   - name: Checkout code
-    #     uses: actions/checkout@v2
-    #   - name: Setup Python 3.10.4
-    #     uses: actions/setup-python@v2
-    #     with:
-    #       python-version: 3.10.4
-    #   - name: Install requirements
-    #     run: |
-    #       pip install -r requirements.txt
     #   - name: Run Tests
     #     run: |
     #        python manage.py tests
